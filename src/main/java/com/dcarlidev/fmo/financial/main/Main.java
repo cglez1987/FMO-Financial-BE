@@ -4,7 +4,9 @@
  */
 package com.dcarlidev.fmo.financial.main;
 
+import com.dcarlidev.fmo.financial.beans.Agency;
 import com.dcarlidev.fmo.financial.etl.ETL_Executor;
+import com.dcarlidev.fmo.financial.repositories.AgencyRepository;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -15,19 +17,26 @@ import java.util.HashMap;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 /**
  *
  * @author carlos
  */
 @SpringBootApplication
+@EnableJpaRepositories(basePackages = "com.dcarlidev.fmo.financial.repositories")
+@EntityScan(basePackages = "com.dcarlidev.fmo.financial.beans")
 public class Main implements CommandLineRunner {
 
     private static String name;
+    @Autowired
+    AgencyRepository agencyRepo;
 
     public Main(@Value("${spring.application.name}") String name) {
         Main.name = name;
@@ -35,7 +44,8 @@ public class Main implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Main.execute();
+        //Main.execute();
+        agencyRepo.save(new Agency("Agencia Modelo", "Orlando Florida"));
     }
 
     public static void execute() {

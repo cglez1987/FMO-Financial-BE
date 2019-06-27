@@ -15,10 +15,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.pentaho.di.core.KettleEnvironment;
-import org.pentaho.di.core.parameters.UnknownParamException;
-import org.pentaho.di.job.Job;
-import org.pentaho.di.job.JobMeta;
+//import org.pentaho.di.core.KettleEnvironment;
+//import org.pentaho.di.job.Job;
+//import org.pentaho.di.job.JobMeta;
 
 /**
  *
@@ -27,43 +26,43 @@ import org.pentaho.di.job.JobMeta;
 public class ETL_Executor {
 
     public void executeKettleJob(String path, Map<String, String> parameters, Map<String, String> variables) {
-        try {
-            KettleEnvironment.init();
-            if ("".equals(path)) {
-                throw new Exception("Path is empty!");
-            } else {
-                File f = new File(path);
-                if (f.isFile()) {
-                    List<String> ad = new ArrayList();
-                    JobMeta jobMeta = new JobMeta(path, null);
-                    Job job = new Job(null, jobMeta);
-                    parameters.forEach((key, value) -> {
-                        try {
-                            job.setParameterValue(key, value);
-                        } catch (UnknownParamException ex) {
-                            Logger.getLogger(ETL_Executor.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    });
-                    variables.forEach(job::setVariable);
-
-                    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                    Date date = new Date();
-                    String fecha = dateFormat.format(date);
-                    job.setVariable("actualDate", fecha);
-                    job.start();
-                    job.waitUntilFinished();
-                    if (job.isFinished() && job.getErrors() == 0) {
-                        System.out.println("Transformation has been finished correctly!!!!");
-                    } else {
-                        System.out.println("Error in transformation: \n");
-                    }
-                } else {
-                    throw new Exception("Job not found!");
-                }
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            KettleEnvironment.init();
+//            if ("".equals(path)) {
+//                throw new Exception("Path is empty!");
+//            } else {
+//                File f = new File(path);
+//                if (f.isFile()) {
+//                    List<String> ad = new ArrayList();
+//                    JobMeta jobMeta = new JobMeta(path, null);
+//                    Job job = new Job(null, jobMeta);
+//                    parameters.forEach((key, value) -> {
+//                        try {
+//                            job.setParameterValue(key, value);
+//                        } catch (Exception ex) {
+//                            Logger.getLogger(ETL_Executor.class.getName()).log(Level.SEVERE, null, ex);
+//                        }
+//                    });
+//                    variables.forEach(job::setVariable);
+//
+//                    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+//                    Date date = new Date();
+//                    String fecha = dateFormat.format(date);
+//                    job.setVariable("actualDate", fecha);
+//                    job.start();
+//                    job.waitUntilFinished();
+//                    if (job.isFinished() && job.getErrors() == 0) {
+//                        System.out.println("Transformation has been finished correctly!!!!");
+//                    } else {
+//                        System.out.println("Error in transformation: \n");
+//                    }
+//                } else {
+//                    throw new Exception("Job not found!");
+//                }
+//            }
+//        } catch (Exception ex) {
+//            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
 
 }
