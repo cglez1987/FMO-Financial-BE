@@ -52,7 +52,7 @@ public class InsuranceTypeService {
         }
     }
 
-    public boolean deleteinsuranceType(int id) {
+    public boolean deleteInsuranceType(int id) {
         if (this.insuranceTypeRepo.existsById(id)) {
             this.insuranceTypeRepo.deleteById(id);
             return true;

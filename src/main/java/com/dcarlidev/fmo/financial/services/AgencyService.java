@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
  * @author lisbet
  */
 @Service
-public class AgencyServices {
+public class AgencyService {
 
     @Autowired
     private AgencyRepository agencyRepo;

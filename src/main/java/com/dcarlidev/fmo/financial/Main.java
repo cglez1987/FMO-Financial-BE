@@ -2,11 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.dcarlidev.fmo.financial.main;
+package com.dcarlidev.fmo.financial;
 
 import com.dcarlidev.fmo.financial.beans.Agency;
 import com.dcarlidev.fmo.financial.etl.ETL_Executor;
-import com.dcarlidev.fmo.financial.repositories.AgencyRepository;
+import com.dcarlidev.fmo.financial.services.AgencyService;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -36,7 +36,7 @@ public class Main implements CommandLineRunner {
 
     private static String name;
     @Autowired
-    AgencyRepository agencyRepo;
+    AgencyService agencyService;
 
     public Main(@Value("${spring.application.name}") String name) {
         Main.name = name;
@@ -45,7 +45,7 @@ public class Main implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         //Main.execute();
-        agencyRepo.save(new Agency("Agencia Modelo", "Orlando Florida"));
+        agencyService.saveAgency(new Agency("Universal Internacional Agency", "New York"));
     }
 
     public static void execute() {

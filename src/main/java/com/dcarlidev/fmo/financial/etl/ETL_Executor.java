@@ -5,7 +5,6 @@
  */
 package com.dcarlidev.fmo.financial.etl;
 
-import com.dcarlidev.fmo.financial.main.Main;
 import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
