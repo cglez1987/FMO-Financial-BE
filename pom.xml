@@ -16,42 +16,6 @@
         <version>2.1.5.RELEASE</version>
     </parent>
     <dependencies>
-       <!-- <dependency>
-            <groupId>pentaho-kettle</groupId>
-            <artifactId>kettle-core</artifactId>
-            <version>8.3.0.0-290</version>
-        </dependency>
-        <dependency>
-            <groupId>pentaho-kettle</groupId>
-            <artifactId>kettle-engine</artifactId>
-            <version>8.3.0.0-290</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>javax.servlet</groupId>
-                    <artifactId>servlet-api</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>pentaho-kettle</groupId>
-            <artifactId>kettle-db</artifactId>
-            <version>4.4.3.4</version>
-        </dependency>
-        <dependency>
-            <groupId>pentaho-kettle</groupId>
-            <artifactId>kettle-dbdialog</artifactId>
-            <version>8.3.0.0-290</version>
-        </dependency>
-        <dependency>
-            <groupId>pentaho-kettle</groupId>
-            <artifactId>kettle-ui-swt</artifactId>
-            <version>8.3.0.0-290</version>
-        </dependency>
-        <dependency>
-            <groupId>pentaho-kettle</groupId>
-            <artifactId>kettle-test</artifactId>
-            <version>4.4.3.4</version>
-        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -90,16 +54,5 @@
             <url>https://repo1.maven.org/maven2/</url>
             <layout>default</layout>
         </repository>
-        <!--<repository>
-            <id>PentahoRepo</id>
-            <name>Pentaho repository</name>
-            <url>https://nexus.pentaho.org/repository/omni/</url>
-            <layout>default</layout>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-                <checksumPolicy>warn</checksumPolicy>
-            </releases>
-        </repository>-->
     </repositories>
 </project>
