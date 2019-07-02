@@ -8,14 +8,14 @@ package com.dcarlidev.fmo.financial.beans;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -44,9 +44,8 @@ public class Payment implements Serializable {
     @Column(name = "dateReceived")
     @Temporal(TemporalType.DATE)
     private Date dateReceived;
-    @JoinColumn(name = "paymentDetailId", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private PaymentDetail paymentDetailId;
+    @OneToOne(optional = false, fetch = FetchType.LAZY, mappedBy = "paymentId", cascade = CascadeType.ALL)
+    private PaymentDetail paymentDetail;
 
     public Payment() {
     }
@@ -85,12 +84,12 @@ public class Payment implements Serializable {
         this.dateReceived = dateReceived;
     }
 
-    public PaymentDetail getPaymentDetailId() {
-        return paymentDetailId;
+    public PaymentDetail getPaymentDetail() {
+        return paymentDetail;
     }
 
-    public void setPaymentDetailId(PaymentDetail paymentDetailId) {
-        this.paymentDetailId = paymentDetailId;
+    public void setPaymentDetail(PaymentDetail paymentDetail) {
+        this.paymentDetail = paymentDetail;
     }
 
     @Override

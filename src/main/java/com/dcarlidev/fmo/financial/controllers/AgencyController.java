@@ -7,7 +7,6 @@ package com.dcarlidev.fmo.financial.controllers;
 
 import com.dcarlidev.fmo.financial.beans.Agency;
 import com.dcarlidev.fmo.financial.services.AgencyService;
-import com.dcarlidev.fmo.financial.services.AgencyService;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +47,7 @@ public class AgencyController {
         return response;
     }
 
-    @RequestMapping(path = "/{id}", method = RequestMethod.PUT)
+    @RequestMapping(path = "/{id}", method = RequestMethod.POST)
     public ResponseEntity<Agency> saveAgency(@Valid @RequestBody Agency agency) {
         Agency a = this.agencyService.saveAgency(agency);
         return new ResponseEntity(a, HttpStatus.OK);

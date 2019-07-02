@@ -12,25 +12,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author lisbet
+ * @author carlos
  */
 @Entity
 @Table(name = "InsuranceType")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "InsuranceType.findAll", query = "SELECT i FROM InsuranceType i"),
-    @NamedQuery(name = "InsuranceType.findById", query = "SELECT i FROM InsuranceType i WHERE i.id = :id"),
-    @NamedQuery(name = "InsuranceType.findByName", query = "SELECT i FROM InsuranceType i WHERE i.name = :name"),
-    @NamedQuery(name = "InsuranceType.findByDescription", query = "SELECT i FROM InsuranceType i WHERE i.description = :description")})
 public class InsuranceType implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -53,12 +44,7 @@ public class InsuranceType implements Serializable {
     public InsuranceType() {
     }
 
-    public InsuranceType(Integer id) {
-        this.id = id;
-    }
-
-    public InsuranceType(Integer id, String name, String description) {
-        this.id = id;
+    public InsuranceType(String name, String description) {
         this.name = name;
         this.description = description;
     }

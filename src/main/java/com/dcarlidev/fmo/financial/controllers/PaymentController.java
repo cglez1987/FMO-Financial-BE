@@ -7,7 +7,6 @@ package com.dcarlidev.fmo.financial.controllers;
 
 import com.dcarlidev.fmo.financial.beans.Payment;
 import com.dcarlidev.fmo.financial.services.PaymentService;
-import com.dcarlidev.fmo.financial.services.PaymentService;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +47,7 @@ public class PaymentController {
         return response;
     }
 
-    @RequestMapping(path = "/{id}", method = RequestMethod.PUT)
+    @RequestMapping(path = "/{id}", method = RequestMethod.POST)
     public ResponseEntity<Payment> savePayment(@Valid @RequestBody Payment payment) {
         Payment a = this.paymentService.savePayment(payment);
         return new ResponseEntity(a, HttpStatus.OK);

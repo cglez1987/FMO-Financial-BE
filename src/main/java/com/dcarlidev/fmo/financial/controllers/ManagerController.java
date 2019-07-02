@@ -47,7 +47,7 @@ public class ManagerController {
         return response;
     }
 
-    @RequestMapping(path = "/{id}", method = RequestMethod.PUT)
+    @RequestMapping(path = "/{id}", method = RequestMethod.POST)
     public ResponseEntity<Manager> saveManager(@Valid @RequestBody Manager manager) {
         Manager a = this.managerService.saveManager(manager);
         return new ResponseEntity(a, HttpStatus.OK);

@@ -6,26 +6,21 @@
 package com.dcarlidev.fmo.financial.beans;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -33,39 +28,8 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "PaymentDetail")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "PaymentDetail.findAll", query = "SELECT p FROM PaymentDetail p"),
-    @NamedQuery(name = "PaymentDetail.findById", query = "SELECT p FROM PaymentDetail p WHERE p.id = :id"),
-    @NamedQuery(name = "PaymentDetail.findByTrackingCode", query = "SELECT p FROM PaymentDetail p WHERE p.trackingCode = :trackingCode"),
-    @NamedQuery(name = "PaymentDetail.findByProducerTin", query = "SELECT p FROM PaymentDetail p WHERE p.producerTin = :producerTin"),
-    @NamedQuery(name = "PaymentDetail.findByProducerName", query = "SELECT p FROM PaymentDetail p WHERE p.producerName = :producerName"),
-    @NamedQuery(name = "PaymentDetail.findByState", query = "SELECT p FROM PaymentDetail p WHERE p.state = :state"),
-    @NamedQuery(name = "PaymentDetail.findByType", query = "SELECT p FROM PaymentDetail p WHERE p.type = :type"),
-    @NamedQuery(name = "PaymentDetail.findByPolicyNumber", query = "SELECT p FROM PaymentDetail p WHERE p.policyNumber = :policyNumber"),
-    @NamedQuery(name = "PaymentDetail.findByProductType", query = "SELECT p FROM PaymentDetail p WHERE p.productType = :productType"),
-    @NamedQuery(name = "PaymentDetail.findByCo", query = "SELECT p FROM PaymentDetail p WHERE p.co = :co"),
-    @NamedQuery(name = "PaymentDetail.findByGroupName", query = "SELECT p FROM PaymentDetail p WHERE p.groupName = :groupName"),
-    @NamedQuery(name = "PaymentDetail.findByComEffDate", query = "SELECT p FROM PaymentDetail p WHERE p.comEffDate = :comEffDate"),
-    @NamedQuery(name = "PaymentDetail.findByTierLevel", query = "SELECT p FROM PaymentDetail p WHERE p.tierLevel = :tierLevel"),
-    @NamedQuery(name = "PaymentDetail.findByAorChange", query = "SELECT p FROM PaymentDetail p WHERE p.aorChange = :aorChange"),
-    @NamedQuery(name = "PaymentDetail.findByCommType", query = "SELECT p FROM PaymentDetail p WHERE p.commType = :commType"),
-    @NamedQuery(name = "PaymentDetail.findByOi", query = "SELECT p FROM PaymentDetail p WHERE p.oi = :oi"),
-    @NamedQuery(name = "PaymentDetail.findBySplitAmt", query = "SELECT p FROM PaymentDetail p WHERE p.splitAmt = :splitAmt"),
-    @NamedQuery(name = "PaymentDetail.findByDueDate", query = "SELECT p FROM PaymentDetail p WHERE p.dueDate = :dueDate"),
-    @NamedQuery(name = "PaymentDetail.findByNoMos", query = "SELECT p FROM PaymentDetail p WHERE p.noMos = :noMos"),
-    @NamedQuery(name = "PaymentDetail.findByMbrCnt", query = "SELECT p FROM PaymentDetail p WHERE p.mbrCnt = :mbrCnt"),
-    @NamedQuery(name = "PaymentDetail.findByIntPrm", query = "SELECT p FROM PaymentDetail p WHERE p.intPrm = :intPrm"),
-    @NamedQuery(name = "PaymentDetail.findByAdvBal", query = "SELECT p FROM PaymentDetail p WHERE p.advBal = :advBal"),
-    @NamedQuery(name = "PaymentDetail.findByPremiumReceived", query = "SELECT p FROM PaymentDetail p WHERE p.premiumReceived = :premiumReceived"),
-    @NamedQuery(name = "PaymentDetail.findByStlToDtPremium", query = "SELECT p FROM PaymentDetail p WHERE p.stlToDtPremium = :stlToDtPremium"),
-    @NamedQuery(name = "PaymentDetail.findByStlToDtCommission", query = "SELECT p FROM PaymentDetail p WHERE p.stlToDtCommission = :stlToDtCommission"),
-    @NamedQuery(name = "PaymentDetail.findByCurrentCommission", query = "SELECT p FROM PaymentDetail p WHERE p.currentCommission = :currentCommission"),
-    @NamedQuery(name = "PaymentDetail.findByComments", query = "SELECT p FROM PaymentDetail p WHERE p.comments = :comments"),
-    @NamedQuery(name = "PaymentDetail.findByTotalCommissionByType", query = "SELECT p FROM PaymentDetail p WHERE p.totalCommissionByType = :totalCommissionByType"),
-    @NamedQuery(name = "PaymentDetail.findByTotalCommissionByProducer", query = "SELECT p FROM PaymentDetail p WHERE p.totalCommissionByProducer = :totalCommissionByProducer"),
-    @NamedQuery(name = "PaymentDetail.findByPaymentId", query = "SELECT p FROM PaymentDetail p WHERE p.paymentId = :paymentId")})
 public class PaymentDetail implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -207,22 +171,14 @@ public class PaymentDetail implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "totalCommissionByProducer")
     private String totalCommissionByProducer;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "paymentId")
-    private int paymentId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "paymentDetailId", fetch = FetchType.LAZY)
-    private Collection<Payment> paymentCollection;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "paymentId", referencedColumnName = "id", nullable = false)
+    private Payment paymentId;
 
     public PaymentDetail() {
     }
 
-    public PaymentDetail(Integer id) {
-        this.id = id;
-    }
-
-    public PaymentDetail(Integer id, String trackingCode, String producerTin, String producerName, String state, String type, String policyNumber, String productType, String co, String groupName, Date comEffDate, String tierLevel, String aorChange, String commType, String oi, String splitAmt, Date dueDate, String noMos, String mbrCnt, String intPrm, String advBal, String premiumReceived, String stlToDtPremium, String stlToDtCommission, String currentCommission, String comments, String totalCommissionByType, String totalCommissionByProducer, int paymentId) {
-        this.id = id;
+    public PaymentDetail(Integer id, String trackingCode, String producerTin, String producerName, String state, String type, String policyNumber, String productType, String co, String groupName, Date comEffDate, String tierLevel, String aorChange, String commType, String oi, String splitAmt, Date dueDate, String noMos, String mbrCnt, String intPrm, String advBal, String premiumReceived, String stlToDtPremium, String stlToDtCommission, String currentCommission, String comments, String totalCommissionByType, String totalCommissionByProducer) {
         this.trackingCode = trackingCode;
         this.producerTin = producerTin;
         this.producerName = producerName;
@@ -250,7 +206,6 @@ public class PaymentDetail implements Serializable {
         this.comments = comments;
         this.totalCommissionByType = totalCommissionByType;
         this.totalCommissionByProducer = totalCommissionByProducer;
-        this.paymentId = paymentId;
     }
 
     public Integer getId() {
@@ -477,23 +432,6 @@ public class PaymentDetail implements Serializable {
         this.totalCommissionByProducer = totalCommissionByProducer;
     }
 
-    public int getPaymentId() {
-        return paymentId;
-    }
-
-    public void setPaymentId(int paymentId) {
-        this.paymentId = paymentId;
-    }
-
-    @XmlTransient
-    public Collection<Payment> getPaymentCollection() {
-        return paymentCollection;
-    }
-
-    public void setPaymentCollection(Collection<Payment> paymentCollection) {
-        this.paymentCollection = paymentCollection;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -518,5 +456,5 @@ public class PaymentDetail implements Serializable {
     public String toString() {
         return "com.dcarlidev.fmo.financial.beans.PaymentDetail[ id=" + id + " ]";
     }
-    
+
 }

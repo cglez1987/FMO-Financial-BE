@@ -5,19 +5,19 @@
  */
 package com.dcarlidev.fmo.financial.services;
 
-import com.dcarlidev.fmo.financial.beans.Agency;
 import com.dcarlidev.fmo.financial.beans.PaymentDetail;
-import com.dcarlidev.fmo.financial.repositories.AgencyRepository;
 import com.dcarlidev.fmo.financial.repositories.PaymentDetailRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author lisbet
  */
+@Service
 public class PaymentDetailService {
 
     @Autowired

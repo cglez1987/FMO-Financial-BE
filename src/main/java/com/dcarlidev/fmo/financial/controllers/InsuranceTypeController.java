@@ -47,7 +47,7 @@ public class InsuranceTypeController {
         return response;
     }
 
-    @RequestMapping(path = "/{id}", method = RequestMethod.PUT)
+    @RequestMapping(path = "/{id}", method = RequestMethod.POST)
     public ResponseEntity<InsuranceType> saveInsuranceType(@Valid @RequestBody InsuranceType insuranceType) {
         InsuranceType a = this.insuranceTypeService.saveInsuranceType(insuranceType);
         return new ResponseEntity(a, HttpStatus.OK);

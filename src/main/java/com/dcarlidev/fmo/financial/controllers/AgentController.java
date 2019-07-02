@@ -47,7 +47,7 @@ public class AgentController {
         return response;
     }
 
-    @RequestMapping(path = "/{id}", method = RequestMethod.PUT)
+    @RequestMapping(path = "/{id}", method = RequestMethod.POST)
     public ResponseEntity<Agent> saveAgent(@Valid @RequestBody Agent agent) {
         Agent a = this.agentService.saveAgent(agent);
         return new ResponseEntity(a, HttpStatus.OK);
