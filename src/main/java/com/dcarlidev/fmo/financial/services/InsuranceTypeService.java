@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author lisbet
+ * @author carlos
  */
 @Service
 public class InsuranceTypeService {

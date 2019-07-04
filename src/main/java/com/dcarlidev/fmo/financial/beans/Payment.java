@@ -23,7 +23,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  *
- * @author lisbet
+ * @author carlos
  */
 @Entity
 @Table(name = "Payment")
@@ -50,12 +50,7 @@ public class Payment implements Serializable {
     public Payment() {
     }
 
-    public Payment(Integer id) {
-        this.id = id;
-    }
-
-    public Payment(Integer id, Date periodEnding, Date dateReceived) {
-        this.id = id;
+    public Payment(Date periodEnding, Date dateReceived) {
         this.periodEnding = periodEnding;
         this.dateReceived = dateReceived;
     }

@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
- * @author lisbet
+ * @author carlos
  */
 @RestController
 @RequestMapping(path = "/managers")
@@ -65,8 +65,8 @@ public class ManagerController {
         return response;
     }
 
-    @RequestMapping(path = "/id", method = RequestMethod.DELETE)
-    public ResponseEntity deleteManager(int id) {
+    @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity deleteManager(@PathVariable int id) {
         ResponseEntity response;
         if (this.managerService.deleteManager(id)) {
             response = new ResponseEntity(HttpStatus.OK);

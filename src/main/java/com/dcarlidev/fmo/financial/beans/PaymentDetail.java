@@ -24,7 +24,7 @@ import javax.validation.constraints.Size;
 
 /**
  *
- * @author lisbet
+ * @author carlos
  */
 @Entity
 @Table(name = "PaymentDetail")

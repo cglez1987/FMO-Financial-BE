@@ -23,37 +23,35 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 /**
  *
  * @author carlos
  */
-@DataJpaTest
 @RunWith(MockitoJUnitRunner.class)
 public class AgencyServiceTest {
-    
+
     @Mock
     private AgencyRepository repo;
     @InjectMocks
     private AgencyService instance;
-    
+
     public AgencyServiceTest() {
-        
+
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -63,7 +61,7 @@ public class AgencyServiceTest {
      */
     @Test
     public void whensaveAgencyCorrectly_thenReturnSameAgency() {
-        System.out.println("saveAgencyTest");
+        System.out.println("whensaveAgencyCorrectly_thenReturnSameAgency");
         Agency agency = new Agency("TestName", "TestAddress");
         Mockito.when(repo.save(any(Agency.class))).thenReturn(agency);
         Agency result = instance.saveAgency(agency);
@@ -75,7 +73,7 @@ public class AgencyServiceTest {
      */
     @Test
     public void whenCallGetAllAgenciesWithData_thenReturnListAllAgencies() {
-        System.out.println("getAllAgenciesTest");
+        System.out.println("whenCallGetAllAgenciesWithData_thenReturnListAllAgencies");
         List<Agency> expResult = new ArrayList<>();
         expResult.add(new Agency("Test1", "DescriptionTest1"));
         expResult.add(new Agency("Test2", "DescriptionTest2"));
@@ -89,7 +87,7 @@ public class AgencyServiceTest {
      */
     @Test
     public void whenFindById_thenReturnAgency() {
-        System.out.println("findByIdTest");
+        System.out.println("whenFindById_thenReturnAgency");
         Agency expResult = new Agency("TestName", "TestAddress");
         Mockito.when(repo.findById(1)).thenReturn(Optional.of(new Agency("TestName", "TestAddress")));
         Agency result = instance.findById(1);
@@ -100,25 +98,37 @@ public class AgencyServiceTest {
      * Test of editAgency method, of class AgencyService.
      */
     @Test
-    public void testEditAgency() {
-        System.out.println("editAgencyTest");
-        Agency agency = null;
-        int id = 0;
-        boolean expResult = false;
-        boolean result = instance.editAgency(agency, id);
+    public void whenEditCorrectlyAgency_thenReturnTrue() {
+        System.out.println("whenEditCorrectlyAgency_thenReturnTrue");
+        boolean expResult = true;
+        Agency agency = new Agency("TestName", "TestAddress");
+        Mockito.when(repo.findById(1)).thenReturn(Optional.of(new Agency("TestName", "TestAddress")));
+        boolean result = instance.editAgency(agency, 1);
         assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of editAgency method, of class AgencyService.
+     */
+    @Test
+    public void whenCallEditAgency_NotFoundAgency_thenReturnFalse() {
+        System.out.println("whenCallEditAgency_NotFoundAgency_thenReturnFalse");
+        Agency agency = new Agency("TestName", "TestAddress");
+        Mockito.when(repo.findById(1)).thenReturn(Optional.empty());
+        boolean result = instance.editAgency(agency, 1);
+        Assert.assertFalse(result);
     }
 
     /**
      * Test of deleteAgency method, of class AgencyService.
      */
     @Test
-    public void testDeleteAgency() {
+    public void whenDeleteAgencyCorrectly_thenReturnTrue() {
         System.out.println("deleteAgencyTest");
-        int id = 0;
-        boolean expResult = false;
-        boolean result = instance.deleteAgency(id);
+        boolean expResult = true;
+        Mockito.when(repo.existsById(1)).thenReturn(true);
+        boolean result = instance.deleteAgency(1);
         assertEquals(expResult, result);
     }
-    
+
 }

@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
- * @author lisbet
+ * @author carlos
  */
 @RestController
 @RequestMapping(path = "/insuranceTypes")
@@ -65,8 +65,8 @@ public class InsuranceTypeController {
         return response;
     }
 
-    @RequestMapping(path = "/id", method = RequestMethod.DELETE)
-    public ResponseEntity deleteInsuranceType(int id) {
+    @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity deleteInsuranceType(@PathVariable int id) {
         ResponseEntity response;
         if (this.insuranceTypeService.deleteInsuranceType(id)) {
             response = new ResponseEntity(HttpStatus.OK);

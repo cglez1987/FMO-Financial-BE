@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
- * @author lisbet
+ * @author carlos
  */
 @RestController
 @RequestMapping(path = "/agents")
@@ -65,8 +65,8 @@ public class AgentController {
         return response;
     }
 
-    @RequestMapping(path = "/id", method = RequestMethod.DELETE)
-    public ResponseEntity deleteAgent(int id) {
+    @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity deleteAgent(@PathVariable int id) {
         ResponseEntity response;
         if (this.agentService.deleteAgent(id)) {
             response = new ResponseEntity(HttpStatus.OK);

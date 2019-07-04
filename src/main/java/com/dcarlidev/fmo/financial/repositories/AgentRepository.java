@@ -11,7 +11,7 @@ import org.springframework.data.repository.CrudRepository;
 
 /**
  *
- * @author lisbet
+ * @author carlos
  */
 public interface AgentRepository extends CrudRepository<Agent, Integer>{
     

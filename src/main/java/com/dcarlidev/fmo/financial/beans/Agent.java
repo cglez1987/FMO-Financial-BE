@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author lisbet
+ * @author carlos
  */
 @Entity
 @Table(name = "Agent")
@@ -59,12 +59,7 @@ public class Agent implements Serializable {
     public Agent() {
     }
 
-    public Agent(Integer id) {
-        this.id = id;
-    }
-
-    public Agent(Integer id, String name, String identificationNumber) {
-        this.id = id;
+    public Agent(String name, String identificationNumber) {
         this.name = name;
         this.identificationNumber = identificationNumber;
     }

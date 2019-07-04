@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author lisbet
+ * @author carlos
  */
 @Service
 public class PaymentService {
@@ -43,11 +43,9 @@ public class PaymentService {
     }
 
     public boolean editPayment(Payment payment, int id) {
-        Optional<Payment> temp = this.paymentRepo.findById(id);
-        if (temp.isPresent()) {
-            Payment a = temp.get();
-            a.setId(id);
-            this.paymentRepo.save(a);
+        if (paymentRepo.existsById(id)) {
+            payment.setId(id);
+            this.paymentRepo.save(payment);
             return true;
         } else {
             return false;

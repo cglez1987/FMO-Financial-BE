@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author lisbet
+ * @author carlos
  */
 @Service
 public class ManagerService {
@@ -43,11 +43,9 @@ public class ManagerService {
     }
 
     public boolean editManager(Manager manager, int id) {
-        Optional<Manager> temp = this.managerRepo.findById(id);
-        if (temp.isPresent()) {
-            Manager a = temp.get();
-            a.setId(id);
-            this.managerRepo.save(a);
+        if (managerRepo.existsById(id)) {
+            manager.setId(id);
+            this.managerRepo.save(manager);
             return true;
         } else {
             return false;

@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
- * @author lisbet
+ * @author carlos
  */
 @RestController
 @RequestMapping(path = "/agencies")
@@ -47,7 +47,7 @@ public class AgencyController {
         return response;
     }
 
-    @RequestMapping(path = "/{id}", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Agency> saveAgency(@Valid @RequestBody Agency agency) {
         Agency a = this.agencyService.saveAgency(agency);
         return new ResponseEntity(a, HttpStatus.OK);
@@ -65,8 +65,8 @@ public class AgencyController {
         return response;
     }
 
-    @RequestMapping(path = "/id", method = RequestMethod.DELETE)
-    public ResponseEntity deleteAgency(int id) {
+    @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity deleteAgency(@PathVariable int id) {
         ResponseEntity response;
         if (this.agencyService.deleteAgency(id)) {
             response = new ResponseEntity(HttpStatus.OK);

@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
- * @author lisbet
+ * @author carlos
  */
 @RestController
 @RequestMapping(path = "/payments")
@@ -65,8 +65,8 @@ public class PaymentController {
         return response;
     }
 
-    @RequestMapping(path = "/id", method = RequestMethod.DELETE)
-    public ResponseEntity deletePayment(int id) {
+    @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity deletePayment(@PathVariable int id) {
         ResponseEntity response;
         if (this.paymentService.deletePayment(id)) {
             response = new ResponseEntity(HttpStatus.OK);

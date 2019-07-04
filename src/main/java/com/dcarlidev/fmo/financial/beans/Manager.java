@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author lisbet
+ * @author carlos
  */
 @Entity
 @Table(name = "Manager")
@@ -60,12 +60,7 @@ public class Manager implements Serializable {
     public Manager() {
     }
 
-    public Manager(Integer id) {
-        this.id = id;
-    }
-
-    public Manager(Integer id, String name, String identificationNumber) {
-        this.id = id;
+    public Manager(String name, String identificationNumber) {
         this.name = name;
         this.identificationNumber = identificationNumber;
     }
