@@ -25,7 +25,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 /**
@@ -84,6 +83,7 @@ public class AgencyControllerTest {
 
     /**
      * Test of getAgencyById method, of class AgencyController.
+     * @throws java.lang.Exception
      */
     @Test
     public void whenCallGetAgencyById_ifExists_thenReturnAgency() throws Exception {
@@ -137,8 +137,7 @@ public class AgencyControllerTest {
         System.out.println("it_should_delete_agency_ifExistId");
         Mockito.when(agencyService.deleteAgency(1)).thenReturn(true);
         this.mockMvc.perform(MockMvcRequestBuilders.delete("/agencies/1"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andDo(MockMvcResultHandlers.print());
+                .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
 }

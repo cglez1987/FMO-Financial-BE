@@ -47,7 +47,7 @@ public class PaymentController {
         return response;
     }
 
-    @RequestMapping(path = "/{id}", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Payment> savePayment(@Valid @RequestBody Payment payment) {
         Payment a = this.paymentService.savePayment(payment);
         return new ResponseEntity(a, HttpStatus.OK);

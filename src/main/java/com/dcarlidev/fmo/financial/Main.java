@@ -4,6 +4,7 @@
  */
 package com.dcarlidev.fmo.financial;
 
+import java.time.LocalDate;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,6 +23,7 @@ public class Main implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         //Main.execute();
+        System.out.println("dateeee: " +  LocalDate.now().toString());
     }
 
     public static void main(String... args) {
